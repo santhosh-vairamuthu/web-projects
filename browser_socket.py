@@ -5,10 +5,10 @@ import socket
 mysock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 # Connect to the server 'example.com' on port 80
-mysock.connect(('example.com', 80))
+mysock.connect(('127.0.0.1', 9000))
 
 # Create an HTTP GET request for the root path '/'
-cmd = 'GET https://example.com HTTP/1.0\r\n\r\n'.encode()
+cmd = 'GET http://localhost HTTP/1.0\r\n\r\n'.encode()
 # Send the HTTP GET request to the server
 mysock.send(cmd)
 
