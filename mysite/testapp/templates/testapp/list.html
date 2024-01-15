@@ -1,11 +1,61 @@
 {% extends 'testapp/base.html' %}
-{% block title%}List{% endblock %}
+{% block title %}List{% endblock %}
+
+{% block style %}
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+    }
+
+    h1 {
+        color: #333;
+    }
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    li {
+        margin-bottom: 8px;
+    }
+
+    input[type="checkbox"] {
+        margin-right: 8px;
+    }
+
+    button {
+        padding: 8px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    input[type="text"] {
+        padding: 8px;
+    }
+</style>
+{% endblock %}
 
 {% block data %}
-<h1>{{data.name}}</h1>
+<h1>Hi {{ data.name }}</h1>
 <ul>
-    {% for i in data.items_set.all%}
-    <li>{{i.text}} STATUS = {{i.complete}}</li>
-    {% endfor %}
+    <form method="post" action="/list/{{ data.id }}">
+        {% csrf_token %}
+        <ul>
+            {% for i in data.items_set.all %}
+                {% if i.complete %}
+                    <li><input type="checkbox" value="clicked" name="c{{ i.id }}" checked> {{ i.text }}</li>
+                {% else %}
+                    <li><input type="checkbox" value="clicked" name="c{{ i.id }}"> {{ i.text }}</li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+        <button type="submit" name="save" value="save">SAVE</button><br><br>
+        <input type="text" name="new">
+        <button type="submit" name="add_new" value="add_new">ADD Item</button>
+    </form> 
 </ul>
 {% endblock %}
