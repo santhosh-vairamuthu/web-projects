@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>{% block title%}{%endblock%}</title>
+    {% block style %}{% endblock %}
 </head>
 <body>
-    <div id="data" name="data">
+    <div>
         {% block data %}
-        <h3>Hi {{name}},</h3>
+        <h1>Hi {{name}},</h1>
         {% endblock %}
     </div> 
 </body>
