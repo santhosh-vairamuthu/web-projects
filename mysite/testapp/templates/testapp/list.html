@@ -1,0 +1,11 @@
+{% extends 'testapp/base.html' %}
+{% block title%}List{% endblock %}
+
+{% block data %}
+<h1>{{data.name}}</h1>
+<ul>
+    {% for i in data.items_set.all%}
+    <li>{{i.text}} STATUS = {{i.complete}}</li>
+    {% endfor %}
+</ul>
+{% endblock %}
