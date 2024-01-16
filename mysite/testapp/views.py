@@ -6,8 +6,6 @@ from .forms import CreateNewList
 
 def index(response, id):
     data = ToDoList.objects.get(id=id)
-    
-
     return render(response, "testapp/base.html", {"name" : data.name})
 
 def list(response, id):
@@ -34,10 +32,11 @@ def create(response):
             n = form.cleaned_data["name"]
             t = ToDoList(name = n)
             t.save()
-        return HttpResponseRedirect("/%i" % t.id)
+        return HttpResponseRedirect("/list/%s" % t.id)
     else:
         form = CreateNewList()
     return render(response, "testapp/create.html", {"form" : form})
 
 def home(response):
-    return render(response, "testapp/home.html", {})
+    data = ToDoList.objects.all()
+    return render(response, "testapp/home.html", {"data" : data})

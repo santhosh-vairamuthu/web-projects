@@ -2,5 +2,16 @@
 
 
 {% block data %}
-<h1>Hi GOD</h1>
+    <div class="container mt-4">
+        <h1 class="text-center mb-4">ToDo Lists</h1>
+        <ul class="list-group text-center">
+            {% for i in data %}
+                <li class="list-group-item">
+                    <a href="/list/{{i.id}}" class="text-decoration-none text-dark">
+                        {{i.name}}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
 {% endblock %}

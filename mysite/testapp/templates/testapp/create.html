@@ -4,11 +4,13 @@
 
 
 {% block data %}
-<h2>To-Do List</h2>
+    <div class="container mt-4">
+        <h2>To-Do List</h2>
 
-    <form id="todo-form" method="post" action="create">
-        {% csrf_token %}
-        {{form.as_p}}
-        <button type="submit" name="save">Add Task</button>
-    </form>
+        <form id="todo-form" method="post" action="create" class="mt-3">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Add List</button>
+        </form>
+    </div>
 {% endblock %}

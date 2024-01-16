@@ -3,59 +3,44 @@
 
 {% block style %}
 <style>
-    body {
-        font-family: 'Arial', sans-serif;
-    }
 
-    h1 {
-        color: #333;
-    }
-
-    ul {
-        list-style-type: none;
-        padding: 0;
-    }
-
-    li {
-        margin-bottom: 8px;
-    }
-
-    input[type="checkbox"] {
-        margin-right: 8px;
-    }
-
-    button {
-        padding: 8px;
-        background-color: #4CAF50;
-        color: white;
-        border: none;
-        text-decoration: none;
-        cursor: pointer;
-    }
-
-    input[type="text"] {
-        padding: 8px;
-    }
+    
 </style>
 {% endblock %}
 
 {% block data %}
-<h1>Hi {{ data.name }}</h1>
-<ul>
-    <form method="post" action="/list/{{ data.id }}">
-        {% csrf_token %}
-        <ul>
-            {% for i in data.items_set.all %}
-                {% if i.complete %}
-                    <li><input type="checkbox" value="clicked" name="c{{ i.id }}" checked> {{ i.text }}</li>
+    <div class="container mt-4">
+        <h1 class="mb-4">Hi {{ data.name }}</h1>
+        <form method="post" action="/list/{{ data.id }}">
+            {% csrf_token %}
+            <ul class="list-group">
+                {% for i in data.items_set.all %}
+                {% if i.complete == True %}
+                    <li class="list-group-item">
+                        <div class="form-check">
+                            <input class="form-check-input" value="clicked" type="checkbox" name="c{{ i.id }}" checked>
+                            <label class="form-check-label">
+                                {{ i.text }}
+                            </label>
+                        </div>
+                    </li>
                 {% else %}
-                    <li><input type="checkbox" value="clicked" name="c{{ i.id }}"> {{ i.text }}</li>
+                <li class="list-group-item">
+                    <div class="form-check">
+                        <input class="form-check-input" value="clicked" type="checkbox" name="c{{ i.id }}" >
+                        <label class="form-check-label">
+                            {{ i.text }}
+                        </label>
+                    </div>
+                </li>
                 {% endif %}
             {% endfor %}
-        </ul>
-        <button type="submit" name="save" value="save">SAVE</button><br><br>
-        <input type="text" name="new">
-        <button type="submit" name="add_new" value="add_new">ADD Item</button>
-    </form> 
-</ul>
+            </ul>
+            <button type="submit" class="btn btn-primary mt-3" name="save" value="save">SAVE</button>
+            <div class="mt-3">
+                <input type="text" class="form-control" name="new" placeholder="Add new item">
+                <button type="submit" class="btn btn-success mt-2" name="add_new" value="add_new">ADD Item</button>
+            </div>
+        </form>
+    </div>
 {% endblock %}
