@@ -1,0 +1,32 @@
+1. Install virtual environment
+command : python3 -m venv <name>
+
+2. Change virtual environment in terminal
+command : source <name>/bin/activate
+
+3. Install FastApi  along with all dependencies
+command : pip3 install "fastapi[all]"
+
+4. View all the installed packages
+command : pip3 freeze
+
+5. To find a pid of  a process running in a port
+command : lsof -i :<port number>
+
+6. To kill a process using pid on a port
+command : kill -9 <pid>
+
+7. To run a fastpi program
+command : uvicorn <program name>:<app name> 
+
+8. To run a fastpi program with dynamic server reload
+command : uvicorn <program name>:<app name> --reload 
+
+9. To run a fastpi application
+command : uvicorn <application name>.<program name>:<app name>
+
+10. To run a fastpi application with dynamic server reload
+command : uvicorn <application name>.<program name>:<app name> --reload
+
+11. SQLAlchemy db url structure
+URl : "<database>://<username>:<password>@<ip address/hostname>/<database name>"
