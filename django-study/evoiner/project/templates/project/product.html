@@ -1,0 +1,24 @@
+{% extends "index.html" %}
+
+{% block content %}
+
+<main class="container mt-5 ">
+    
+    <div class="row">
+        <div class="col-md-6 offset-md-3 mb-5 mt-2">
+            <div class="card border-2 bg-dark-subtle">
+                <div class="card-body px-2 py-4">
+                    <h5 class="card-title text-center fs-1 fw-bold">{{data.title}}</h5>
+                    <div class="container p-1 mt-1 mb-2">
+                        {% for i in tags%}
+                        <span class="badge rounded-pill text-bg-dark">{{i}}</span>
+                        {% endfor %}
+                    </div>
+                    <p class="card-text font-monospace text-justify text-justify-inter">{{data.description}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+{% endblock content %}
